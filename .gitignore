@@ -1,0 +1,438 @@
+Amniriane
+#9601
+📕En projet de cours, indisponible.
+Sébastien, L'autre Sébastien
+
+Sébastien
+ a ajouté 
+L'autre Sébastien
+ au groupe.
+ — 09/02/2021
+Sébastien
+ a commencé un appel qui a duré 2 heures.
+ — 09/02/2021
+Sébastien
+ a commencé un appel qui a duré 5 minutes.
+ — 03/03/2021
+Sébastien
+ a commencé un appel qui a duré une heure.
+ — 09/04/2021
+L'autre Sébastien — 10/04/2021
+import mongoose from 'mongoose';
+
+const userSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    phone: {
+        type: String,
+    },
+    avatar: {
+        type: String,
+    },
+    birthdayDate: {
+        type: String,
+    },
+    password: {
+        type: String,
+        required: true,
+    },
+    token: {
+        type: String,
+    },
+    refreshToken: {
+        type: String,
+    },
+    attempt: {
+        type: Number,
+        default: 0,
+    },
+    lastLogin: {
+        type: Number,
+        default: Date.now(),
+    },
+    reset_password: {
+        token: {
+            type: String
+        },
+        date: {
+            type: Number
+        }
+    },
+    double_authentification: {
+        activated: {
+            type: Boolean
+        },
+        code: {
+            type: String
+        },
+        date: {
+            type: Number
+        }
+    },
+    verify_email: {
+        code: {
+            type: String
+        },
+        date: {
+            type: Number
+        },
+        verified: {
+            type: Boolean
+        }
+    },
+    role: {
+        type: String,
+    },
+    currency: {
+        type: String,
+    },
+    isActive: {
+        type: Boolean,
+        default: true,
+    },
+}, { timestamps: true });
+
+const User = mongoose.model('user', userSchema);
+
+export { User };
+User.create(valeurDeCréation);
+User.findOne({email: 'seb_le@hotmail.fr'}); cherchera un utilisateur dont l'email est égale à seb_le@hotmail.fr
+User.find({email: 'seb_le@hotmail.fr'); chechera tous les utilisateurs dont le mail est égale à seb_le@hotmail.fr
+User.update({email: 'seb_le@hotmail.fr'}, {$set: {email: 'seb_bob@hotmail.fr'}); Modifiera l'email de l'utilisateur qui a pour email  seb_le@hotmail.fr par seb_bob@hotmail.fr
+User.deleteOne({email: 'seb_le@hotmail.fr'}); Supprimera l'utilisateur dont l'email est égale à seb_le@hotmail.fr
+L'autre Sébastien — 10/04/2021
+Utilisateur connexion (email - password) --> API
+
+Vérifier le format de l'email (API) --> tu te fou de ma gueule connard, ton mail il pue la merde.
+
+Chercher si email existe dans la db (Requête à la base de donnée) 
+:: const user = await User.findOne({email: emailUtilisateur});
+
+Si la db trouve --> user
+Si elle ttrouve pas --> null/undefined
+
+Vérifier si on a reçu un user et sinon renvoyer un message d'erreur.
+
+Bcrypt --> chiffrer le mot de passe.
+
+Compare mot de passe / mot de passe chiffrer de l'utilisateur.
+
+--> Tu peux te connecter batard t tro bo. 
+--> Token qui contient : son id en base donnée, ou son email et d'autres informations si besoin.
+
+
+
+Grands parents --> Chiens
+
+Parents --> Chats
+
+Enfant --> Cochons
+
+Quand l'utilisateur fait la requête elle envoie son Token
+Tu récupères les informations dans le Token
+
+:: const user = await User.findOne({email: emailUtilisateur});
+
+user.age = usagé.
+
+--> vu que usagé on renvoi des chiens
+L'autre Sébastien — 10/04/2021
+https://github.com/Sebastien-Lechat/node-UBER
+GitHub
+Sebastien-Lechat/node-UBER
+Contribute to Sebastien-Lechat/node-UBER development by creating an account on GitHub.
+
+Amniriane — 20/04/2021
+Pour faire remonter la discussion en haut
+Sébastien — 20/04/2021
+Amniriane — 20/04/2021
+C'est a moi ca Oh
+Sébastien — 20/04/2021
+à toi x)
+carrément
+Amniriane — 20/04/2021
+O
+U
+I
+C'est a moi ce gif
+Sébastien — 20/04/2021
+ya ton nom dessus ?
+Amniriane — 20/04/2021
+Je peux le mettre XD
+Sébastien — 20/04/2021
+va s'y x)
+Amniriane — 20/04/2021
+Promis ce soir je te fais une frame avec mon nom ecrit sur un vieux paint XD
+Sébastien — 20/04/2021
+x))
+Amniriane — 20/04/2021
+SEBASTIENNNNN
+T'es en cours?
+L'autre Sébastien — 20/04/2021
+Ou
+i
+Amniriane — 20/04/2021
+MONGO C'EST DU CACAAAAAAAAAAA
+L'autre Sébastien — 20/04/2021
+non
+Amniriane — 20/04/2021
+Si on est 3 en call debile a galerer
+Yaaqoub a dit passe par altlas
+Je gzjhejgnegmaekrghzegra
+Et j'ai pas lu la doc
+Sébastien — 20/04/2021
+trop bien atlas
+Amniriane — 20/04/2021
+PM2
+POURQUOI?
+Sry maj ^^
+L'autre Sébastien — 20/04/2021
+nodemon
+c'est mieux
+pm2 c'est chiant à mettre en place
+Amniriane — 20/04/2021
+k
+Sébastien
+ a commencé un appel qui a duré 17 minutes.
+ — Aujourd’hui à 19:31
+Sébastien
+ a commencé un appel.
+ — Aujourd’hui à 21:41
+Sébastien — Aujourd’hui à 21:47
+https://mondedommagementnavigo.com/
+L'autre Sébastien — Aujourd’hui à 21:58
+nodemon ./server.ts
+uploads/avatars/*
+uploads/filesSor/*
+uploads/points/*
+uploads/zip/*
+uploads/unziped/*
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Directory for instrumented libs generated by jscoverage/JSCover
+lib-cov
+
+# Coverage directory used by tools like istanbul
+coverage
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# Grunt intermediate storage (https://gruntjs.com/creating-plugins#storing-task-files)
+.grunt
+
+# Bower dependency directory (https://bower.io/)
+bower_components
+
+# node-waf configuration
+.lock-wscript
+
+# Compiled binary addons (https://nodejs.org/api/addons.html)
+build/Release
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Snowpack dependency directory (https://snowpack.dev/)
+web_modules/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+.env.test
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# Next.js build output
+.next
+out
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+# Comment in the public line in if your project uses Gatsby and not Next.js
+# https://nextjs.org/blog/next-9-1#public-directory-support
+# public
+
+# vuepress build output
+.vuepress/dist
+... (22 lignes restantes)
+Réduire
+message.txt
+3 Ko
+﻿
+uploads/avatars/*
+uploads/filesSor/*
+uploads/points/*
+uploads/zip/*
+uploads/unziped/*
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Directory for instrumented libs generated by jscoverage/JSCover
+lib-cov
+
+# Coverage directory used by tools like istanbul
+coverage
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# Grunt intermediate storage (https://gruntjs.com/creating-plugins#storing-task-files)
+.grunt
+
+# Bower dependency directory (https://bower.io/)
+bower_components
+
+# node-waf configuration
+.lock-wscript
+
+# Compiled binary addons (https://nodejs.org/api/addons.html)
+build/Release
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Snowpack dependency directory (https://snowpack.dev/)
+web_modules/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+.env.test
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# Next.js build output
+.next
+out
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+# Comment in the public line in if your project uses Gatsby and not Next.js
+# https://nextjs.org/blog/next-9-1#public-directory-support
+# public
+
+# vuepress build output
+.vuepress/dist
+
+# Serverless directories
+.serverless/
+
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
+
+# TernJS port file
+.tern-port
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+# yarn v2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
