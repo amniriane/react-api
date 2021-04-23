@@ -2,8 +2,11 @@ import { config } from 'dotenv';
 import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import { routerIndex } from './src/routes';
+import { connect } from './src/db/db';
 
 config();
+
+connect();
 
 const port = 8000;
 
