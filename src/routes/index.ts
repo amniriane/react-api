@@ -1,13 +1,14 @@
 import express from 'express';
 import { UserController } from '../controllers/User.controller';
+import { authMiddleware } from '../middlewares/auth.middleware';
 
 const route = express();
 
 route.post('/register', UserController.register);
 route.post('/login', UserController.login);
-route.get('/users', UserController.getAllUsers);
-route.get('/user', UserController.getOneUser);
-route.put('/user', UserController.takeShot);
-route.put('/user/bottle', UserController.newBottle);
+route.get('/users', authMiddleware, UserController.getAllUsers);
+route.post('/user/takeshot', authMiddleware, UserController.takeShot);
+route.post('/user/sendshot', authMiddleware, UserController.sendShot);
+route.put('/user/bottle', authMiddleware, UserController.newBottle);
 
 export { route as routerIndex };

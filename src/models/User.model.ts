@@ -19,13 +19,16 @@ const userSchema = new mongoose.Schema({
     },
     drink: {
         canReceived: {
-            type: Boolean
+            type: Boolean,
+            default : true
         },
         canSend: {
-            type: Boolean
+            type: Boolean,
+            default: true,
         },
         drinked: {
-            type: Boolean
+            type: Boolean,
+            // default: false, Cause pussy from start?
         },
         date: {
             type: Number
