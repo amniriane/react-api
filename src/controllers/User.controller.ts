@@ -157,7 +157,7 @@ export class UserController {
             const request: any = req;
             const user: UserI = request.user;
 
-            await User.updateOne({ _id: mongoose.Types.ObjectId(user._id)}, {$set: { shotNulber: 17 }});
+            await User.updateOne({ _id: mongoose.Types.ObjectId(user._id)}, {$set: { shotNumber: 17 }});
 
             res.status(200).send({ error: false, message: 'A new bottle was purchased !', user: await User.findOne({ _id: mongoose.Types.ObjectId(user._id) }, {  password: 0, token: 0, __v: 0 }) });
         } catch (error) {
