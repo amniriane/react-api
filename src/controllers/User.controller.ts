@@ -4,6 +4,7 @@ import { User } from '../models/User.model';
 import { Notification } from '../models/Notification.model';
 import { newToken } from '../utils/user.utils';
 import mongoose from 'mongoose';
+import { NotificationI } from '../intefaces/Notification.interface';
 
 export class UserController {
     static register = async (req: Request, res: Response) => {
@@ -104,7 +105,7 @@ export class UserController {
 
                 await Notification.updateMany({ targetId: mongoose.Types.ObjectId(user._id)}, {$set: { seen: true } });
 
-                res.status(200).send({ error: false, message: 'You are a pussy', user: user});
+                res.status(200).send({ error: false, message: 'You are a pussy', user: await User.findOne({ _id: mongoose.Types.ObjectId(user._id) }, {  password: 0, token: 0, __v: 0 }) });
             }
         } catch (error) {
             res.status(400).send({ error: true, message: error.message, err: error });
@@ -124,16 +125,25 @@ export class UserController {
             }
 
             const target: UserI = await User.findOne({ _id: mongoose.Types.ObjectId(targetId) });
-            if (!target) throw new Error('Target id doesn\'t exist'); 
+            if (!target){
+                throw new Error('Target id doesn\'t exist');
+            }
 
-            if (target.drink?.date) {
-                const timeBetweenLastDrink = (Date.now() - target.drink?.date) / 1000;
+            if (user.drink && !user.drink.canSend) {
+                const timeBetweenLastDrink = (Date.now() - user.drink.date) / 1000;
+                if (timeBetweenLastDrink < 600) {
+                    throw new Error('You cannot send shot for moment. Wait fiew minutes.');
+                }
+            }
+
+            if (target.drink && target.drink.date) {
+                const timeBetweenLastDrink = (Date.now() - target.drink.date) / 1000;
                 if (timeBetweenLastDrink < 600) {
                     throw new Error(target.name + ' cannot drink for moment. Wait fiew minutes');
                 }
             }
 
-            await Notification.create({title: user.name + ' send a shot !', message: 'So, do you want to take my drink ?', senderId: user._id, targetId: target._id, seen: false  })
+            await Notification.create({title: user.name + ' send a shot !', message: 'So, do you want to take my drink ?', senderId: user._id, targetId: target._id, seen: false  });
 
             res.status(200).send({ error: false, message: 'Your drink as been send'});
         } catch (error) {
@@ -141,11 +151,29 @@ export class UserController {
         }
     }
 
-    static newBottle = (req: Request, res: Response) => {
+    static newBottle = async (req: Request, res: Response) => {
         try {
             // Récupération de l'utilisateur grâce au Authmiddleware qui rajoute le token dans req
             const request: any = req;
             const user: UserI = request.user;
+
+            await User.updateOne({ _id: mongoose.Types.ObjectId(user._id)}, {$set: { shotNulber: 17 }});
+
+            res.status(200).send({ error: false, message: 'A new bottle was purchased !', user: await User.findOne({ _id: mongoose.Types.ObjectId(user._id) }, {  password: 0, token: 0, __v: 0 }) });
+        } catch (error) {
+            res.status(400).send({ error: true, message: error.message, err: error });
+        }
+    }
+
+    static getAllNotifications = async (req: Request, res: Response) => {
+        try {
+            // Récupération de l'utilisateur grâce au Authmiddleware qui rajoute le token dans req
+            const request: any = req;
+            const user: UserI = request.user;
+
+            const allNotifications: NotificationI[]  = await Notification.find({ targetId: user._id }, { __v: 0 });
+
+            res.status(200).send({ error: false, message: 'Successfull notifications acquisition', notifications: allNotifications});
         } catch (error) {
             res.status(400).send({ error: true, message: error.message, err: error });
         }

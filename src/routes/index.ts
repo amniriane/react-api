@@ -10,5 +10,6 @@ route.get('/users', authMiddleware, UserController.getAllUsers);
 route.post('/user/takeshot', authMiddleware, UserController.takeShot);
 route.post('/user/sendshot', authMiddleware, UserController.sendShot);
 route.put('/user/bottle', authMiddleware, UserController.newBottle);
+route.get('/user/notifications', authMiddleware, UserController.getAllNotifications);
 
 export { route as routerIndex };
